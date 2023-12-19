@@ -1,14 +1,19 @@
 import express from "express";
 import { responseWrapper } from "../utils";
-import { YourTypeRequest } from "./types";
-const yourExpressRouter = express.Router();
+import { ExpressPostRequest, GetProductRequest, Product } from "./types";
+import { getAllProducts, getProduct } from "./logic";
+const productsRouter = express.Router();
 
-yourExpressRouter.post(
-  "/",
-  async (req: YourTypeRequest, res) =>
-    await responseWrapper<void>(logicFunction(req), res)
+productsRouter.post(
+  "/product",
+  async (req: GetProductRequest, res) =>
+    await responseWrapper<Product>(getProduct(req), res)
 );
 
-const logicFunction = (req: YourTypeRequest) => async () => {};
+productsRouter.get(
+  "/all-products",
+  async (req: ExpressPostRequest<{}>, res) =>
+    await responseWrapper<Product[]>(getAllProducts(req), res)
+);
 
-export { yourExpressRouter };
+export { productsRouter };

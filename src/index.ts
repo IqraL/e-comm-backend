@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { yourExpressRouter } from "./routes";
+import { productsRouter } from "./routes";
 
 const app = express();
 app.use(cors());
@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = 5001;
 
-app.use(yourExpressRouter);
+app.use(productsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

@@ -1,10 +1,15 @@
 import { Request } from "express";
-type ExpressPostRequest<T> = Request<{}, {}, T, {}>;
+export type ExpressPostRequest<T> = Request<{}, {}, T, {}>;
 
-type YourType = {
-  user: string;
-  company: string;
-  component: string;
-  errorMsg: string;
+type GetProduct = {
+  productId: string;
 };
-export type YourTypeRequest = ExpressPostRequest<YourType>;
+export type GetProductRequest = ExpressPostRequest<GetProduct>;
+export type Product = {
+  id: string,
+  name: string,
+  price: number,
+  imgUrl: string
+  quantity: number,
+  description: string,
+}
